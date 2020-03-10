@@ -4,6 +4,10 @@ class Api::V1::TracksController < ApplicationController
     tracks = RSpotify::Track.search(params[:q])
     sanitized_tracks = []
     
+    if !tracks.length
+      render json: { error: tracks.errors.full_messages }
+    else
+
     tracks.each do |tracks|
       sanitized_tracks.push(
         {
@@ -14,4 +18,5 @@ class Api::V1::TracksController < ApplicationController
     end
     render json: { tracks: sanitized_tracks }
   end
+end
 end
