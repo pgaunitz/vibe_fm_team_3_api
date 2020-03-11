@@ -11,11 +11,11 @@ RSpec.describe 'GET /api/v1/tracks', type: :request do
     end
 
     it 'returns Vertigo song' do
-    expect(JSON.parse(response.body)['tracks'].first['name']).to eq 'Vertigo'
+    expect(response_json['tracks'].first['name']).to eq 'Vertigo'
     end
 
     it 'returns also the artist of the song' do
-    expect(JSON.parse(response.body)['tracks'].first['name']).to eq 'U2'
+    expect(response_json['tracks'][0]['artist']).to eq 'Khalidgit'
     end
 
     describe 'an invalid search' do
@@ -31,7 +31,7 @@ RSpec.describe 'GET /api/v1/tracks', type: :request do
         end
 
         it 'returns a error message' do
-        expect(response_json['song_not_found']).to eq "There is no matches for the song you'r searching"
+        expect(response_json['song_not_found']).to eq "There is no matches for the song you are trying to search"
         end
     end
 end 

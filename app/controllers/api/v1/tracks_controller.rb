@@ -10,7 +10,7 @@ class Api::V1::TracksController < ApplicationController
       sanitized_tracks.push(
         {
             name: track.name,
-            artist: 
+            artist: track.artists.first.name,
             spotify_id: track.id
         }
       )
@@ -19,3 +19,4 @@ class Api::V1::TracksController < ApplicationController
   end
  end
 end
+
