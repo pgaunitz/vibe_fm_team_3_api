@@ -1,22 +1,21 @@
 class Api::V1::TracksController < ApplicationController
   def index
-    response = RSpotify.authenticate(Rails.application.credentials.spotify[:client_id], Rails.application.credentials.spotify[:client_secret])
     tracks = RSpotify::Track.search(params[:q])
-    sanitized_tracks = []
-    
-    if !tracks.length
-      render json: { error: tracks.errors.full_messages }
-    else
 
-    tracks.each do |tracks|
+    sanitized_tracks = []
+    if tracks.empty?
+      render json: { song_not_found: "There is no matches for the song you are trying to search" }, status: 400
+    else
+    tracks.each do |track|
       sanitized_tracks.push(
         {
-                  name: tracks.name,
-                  spotify_id: tracks.id,
-                }
+            name: track.name,
+            artist: 
+            spotify_id: track.id
+        }
       )
     end
     render json: { tracks: sanitized_tracks }
   end
-end
+ end
 end
