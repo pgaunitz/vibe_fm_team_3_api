@@ -4,13 +4,12 @@ class Api::V1::TracksController < ApplicationController
 
     sanitized_tracks = []
     if tracks.empty?
-      render json: { song_not_found: "There is no matches for the song you are trying to search" }, status: 400
+      render json: { song_not_found: "There is no matches for the song you are searching" }, status: 400
     else
     tracks.each do |track|
       sanitized_tracks.push(
         {
-            name: track.name,
-            artist: 
+            name: track.name, 
             spotify_id: track.id
         }
       )

@@ -31,7 +31,7 @@ RSpec.describe 'GET /api/v1/tracks', type: :request do
         end
 
         it 'returns a error message' do
-        expect(response_json['song_not_found']).to eq "There is no matches for the song you'r searching"
+        expect(response_json['song_not_found']).to eq "There is no matches for the song you are searching"
         end
     end
 end 
