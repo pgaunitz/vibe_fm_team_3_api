@@ -9,7 +9,7 @@ RSpec.describe 'GET /api/v1/tracks', type: :request do
     it 'returns a 200 response status' do
     expect(response.status).to eq 200
     end
-
+    
     it 'returns Vertigo song' do
     expect(response_json['tracks'].first['name']).to eq 'Vertigo'
     end

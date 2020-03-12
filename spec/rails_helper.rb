@@ -2,6 +2,8 @@ require  'coveralls'
 Coveralls.wear_merged!('rails')
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+require 'webmock'
+WebMock.enable!
 
 
 require File.expand_path('../config/environment', __dir__)
@@ -23,4 +25,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include ResponseJSON
+  config.before do
+    
+  end
 end
