@@ -2,9 +2,20 @@ require  'coveralls'
 Coveralls.wear_merged!('rails')
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-require 'webmock'
+require 'webmock/rspec'
 WebMock.enable!
+include WebMock::API
 
+WebMock::API
+
+
+stub_request(:post, "https://accounts.spotify.com/api/token").
+with(
+  body: {"grant_type"=>"client_credentials"},
+  headers: {
+  'Accept'=>'*/*'
+  }).
+to_return(status: 200, body: "{\"access_token\":\"ttttt\"}", headers: {})
 
 require File.expand_path('../config/environment', __dir__)
 
@@ -26,6 +37,19 @@ RSpec.configure do |config|
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include ResponseJSON
   config.before do
-    
+    stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=Vertigo&type=track").
+    with(
+      headers: {
+      'Accept'=>'*/*'
+      }).
+    to_return(status: 200, body: file_fixture('spotify_vertigo_tracks_response.json'), headers: {})
+
+
+    stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=asdlfjal%3Bksdfjkl%3Basdjfkl%3Basjdflk%3Bajsdl%3Bfads&type=track").
+    with(
+      headers: {
+    'Accept'=>'*/*'
+      }).
+    to_return(status: 200, body: file_fixture('spotify_no_results_for_query.json'), headers: {})
   end
 end
