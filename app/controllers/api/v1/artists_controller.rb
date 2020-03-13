@@ -13,7 +13,7 @@ class Api::V1::ArtistsController < ApplicationController
           {
             name: artist.name,
             genre: artist.genres,
-            spotify_id: artist.id
+            followers: artist.followers
           }
         )
       end
