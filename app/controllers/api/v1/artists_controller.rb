@@ -9,10 +9,11 @@ class Api::V1::ArtistsController < ApplicationController
         render json: { error_message: "There is no matches for the artist you are trying to search" }, status: 400
       else
       artists.each do |artist|
+        binding.pry
         sanitized_artists.push(
           {
             name: artist.name,
-            # track: artist.tracks.first.name,
+            genre: artist.genres,
             spotify_id: artist.id
           }
         )
