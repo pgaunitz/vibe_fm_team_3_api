@@ -3,7 +3,8 @@ Coveralls.wear_merged!('rails')
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require 'webmock/rspec'
-WebMock.enable!
+# WebMock.enable!
+WebMock.disable!
 include WebMock::API
 
 WebMock::API
@@ -51,5 +52,13 @@ RSpec.configure do |config|
     'Accept'=>'*/*'
       }).
     to_return(status: 200, body: file_fixture('spotify_no_results_for_query.json'), headers: {})
+
+    stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=U2&type=artist").
+         with(
+           headers: {
+       	  'Accept'=>'*/*',
+           }).
+         to_return(status: 200, body: file_fixture('spotify_U2_artists_response.json') , headers: {})
+
   end
 end
