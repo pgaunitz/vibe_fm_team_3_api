@@ -3,8 +3,8 @@ Coveralls.wear_merged!('rails')
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require 'webmock/rspec'
-# WebMock.enable!
-WebMock.allow_net_connect!
+WebMock.enable!
+# WebMock.allow_net_connect!
 # WebMock.disable!
 include WebMock::API
 
@@ -39,33 +39,33 @@ RSpec.configure do |config|
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include ResponseJSON
   config.before do
-    # stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=Vertigo&type=track").
-    # with(
-    #   headers: {
-    #   'Accept'=>'*/*'
-    #   }).
-    # to_return(status: 200, body: file_fixture('spotify_vertigo_tracks_response.json'), headers: {})
+    stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=Vertigo&type=track").
+    with(
+      headers: {
+      'Accept'=>'*/*'
+      }).
+    to_return(status: 200, body: file_fixture('spotify_vertigo_tracks_response.json'), headers: {})
 
 
-    # stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=asdlfjal%3Bksdfjkl%3Basdjfkl%3Basjdflk%3Bajsdl%3Bfads&type=track").
-    #   with(
-    #     headers: {
-    #   'Accept'=>'*/*'
-    #     }).
-    #   to_return(status: 200, body: file_fixture('spotify_no_results_for_query.json'), headers: {})
+    stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=asdlfjal%3Bksdfjkl%3Basdjfkl%3Basjdflk%3Bajsdl%3Bfads&type=track").
+      with(
+        headers: {
+      'Accept'=>'*/*'
+        }).
+      to_return(status: 200, body: file_fixture('spotify_no_results_for_query.json'), headers: {})
 
-    # stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=U2&type=artist").
-    #   with(
-    #     headers: {
-    #   'Accept'=>'*/*',
-    #     }).
-    #   to_return(status: 200, body: file_fixture('spotify_U2_artists_response.json'), headers: {})
-    # stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=asdlfjal%3Bksdfjkl%3Basdjfkl%3Basjdflk%3Bajsdl%3Bfads&type=artist").
-    #   with(
-    #     headers: {
-    #     'Accept'=>'*/*',
-    #     }).
-    #   to_return(status: 200, body: file_fixture('spotify_no_results_for_artist_query.json'), headers: {})
+    stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=U2&type=artist").
+      with(
+        headers: {
+      'Accept'=>'*/*',
+        }).
+      to_return(status: 200, body: file_fixture('spotify_U2_artists_response.json'), headers: {})
+    stub_request(:get, "https://api.spotify.com/v1/search?limit=20&offset=0&q=asdlfjal%3Bksdfjkl%3Basdjfkl%3Basjdflk%3Bajsdl%3Bfads&type=artist").
+      with(
+        headers: {
+        'Accept'=>'*/*',
+        }).
+      to_return(status: 200, body: file_fixture('spotify_no_results_for_artist_query.json'), headers: {})
   end
 end
 
