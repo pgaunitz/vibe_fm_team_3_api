@@ -10,8 +10,12 @@ RSpec.describe 'GET /api/v1/artists', type: :request do
         expect(response.status).to eq 200
     end
 
-    it 'returns also the artist of the song' do
+    it 'returns artist genre' do
         expect(response_json['artists'][0]['genre']).to include 'irish rock'
+    end
+
+    it 'returns total artist followers' do
+        expect(response_json['artists'][0]['followers']).to eq 6442560
     end
 
     describe 'an invalid search with empty string' do
