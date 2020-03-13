@@ -7,11 +7,10 @@ RSpec.describe 'GET /api/v1/artists', type: :request do
     end
 
     it 'returns a 200 response status' do
-        binding.pry
         expect(response.status).to eq 200
     end
-    
-    it 'returns Vertigo song' do
+    binding.pry
+    it 'returns  Artist' do
         expect(response_json['tracks'].first['name']).to eq 'Vertigo'
     end
 

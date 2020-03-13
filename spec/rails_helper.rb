@@ -3,8 +3,8 @@ Coveralls.wear_merged!('rails')
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require 'webmock/rspec'
-# WebMock.enable!
-WebMock.disable!
+WebMock.enable!
+# WebMock.disable!
 include WebMock::API
 
 WebMock::API
@@ -58,7 +58,7 @@ RSpec.configure do |config|
            headers: {
        	  'Accept'=>'*/*',
            }).
-         to_return(status: 200, body: file_fixture('spotify_U2_artists_response.json') , headers: {})
+         to_return(status: 200, body: file_fixture('spotify_U2_artists_response.json'), headers: {})
 
   end
 end

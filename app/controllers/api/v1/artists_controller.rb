@@ -12,7 +12,7 @@ class Api::V1::ArtistsController < ApplicationController
         sanitized_artists.push(
           {
             name: artist.name,
-            track: artist.artists.first.name,
+            # track: artist.tracks.first.name,
             spotify_id: artist.id
           }
         )
