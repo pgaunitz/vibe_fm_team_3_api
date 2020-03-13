@@ -64,7 +64,7 @@ RSpec.configure do |config|
         headers: {
         'Accept'=>'*/*',
         }).
-      to_return(status: 200, body: file_fixture('spotify_U2_artists_response.json'), headers: {})
+      to_return(status: 200, body: file_fixture('spotify_no_results_for_artist_query.json'), headers: {})
   end
 end
 
