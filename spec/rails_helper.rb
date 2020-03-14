@@ -66,6 +66,14 @@ RSpec.configure do |config|
         'Accept'=>'*/*',
         }).
       to_return(status: 200, body: file_fixture('spotify_no_results_for_artist_query.json'), headers: {})
+
+      stub_request(:get, "https://api.spotify.com/v1/artists/51Blml2LZPmy7TTiAg47vQ/top-tracks?country=SE").
+  with(
+    headers: {
+	  'Accept'=>'*/*',
+    }).
+  to_return(status: 200, body: file_fixture('spotify_U2_top_tracks_response.json'), headers: {})
+
   end
 end
 
