@@ -10,8 +10,11 @@ RSpec.describe 'GET /api/v1/artists', type: :request do
         expect(response.status).to eq 200
     end
 
+    it 'returns artist name' do
+        expect(response_json['artists'][0]['name']).to eq'U2'
+    end
     it 'returns artist genre' do
-        expect(response_json['artists'][0]['genre']).to include 'irish rock'
+        expect(response_json['artists'][0]['genres']).to include'irish rock'
     end
 
     it 'returns total artist followers' do
