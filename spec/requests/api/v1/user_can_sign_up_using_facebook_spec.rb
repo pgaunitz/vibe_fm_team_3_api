@@ -1,5 +1,5 @@
-RSpec.describe 'POST /api/v1/auth', type: :request do
-    describe 'successfully' do
+RSpec.describe 'POST /api/v1/auth facebook', type: :request do
+    describe 'successfully facebook login' do
         before do
             post '/api/v1/auth',
             params: {
