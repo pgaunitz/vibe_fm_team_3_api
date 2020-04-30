@@ -12,15 +12,10 @@ require "action_mailbox/engine"
 require "action_text/engine"
 require "action_view/railtie"
 require "action_cable/engine"
-# require "sprockets/railtie"
-# require "rails/test_unit/railtie"
 Bundler.require(*Rails.groups)
 
 module VibeFmTeam3Api
   class Application < Rails::Application
-
-    # RSpotify.raw_response = true
-
     RSpotify.authenticate(Rails.application.credentials.spotify[:client_id], Rails.application.credentials.spotify[:client_secret])
     
     config.load_defaults 6.0

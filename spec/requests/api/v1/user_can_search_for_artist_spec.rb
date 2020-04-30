@@ -37,6 +37,7 @@ RSpec.describe 'GET /api/v1/artists', type: :request do
             expect(response_json['error_message']).to eq "No query"
         end
     end
+    
     describe 'an invalid search with no matching text' do
         before do
           get '/api/v1/artists',
